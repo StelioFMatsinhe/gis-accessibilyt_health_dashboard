@@ -1,0 +1,6 @@
+Flask
+geopandas
+folium
+shapely
+pandas
+gunicorn

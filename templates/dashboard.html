@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>GIS Intelligence Platform</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background: #f4f6fb;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            background: #0b1220;
+            color: white;
+            height: 100vh;
+            padding: 22px;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        /* CARD STYLE */
+        .cardx {
+            background: #111827;
+            border-radius: 14px;
+            padding: 15px;
+            margin-top: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        }
+
+        .cardx h5 {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .value {
+            font-size: 26px;
+            font-weight: bold;
+            color: #ff3b30;
+        }
+
+        /* MAPA */
+        .map-container {
+            height: 100vh;
+            padding: 15px;
+        }
+
+        .mapbox {
+            height: 95vh;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        /* INPUTS */
+        input {
+            border-radius: 10px !important;
+        }
+
+        .btn-primary {
+            width: 100%;
+            border-radius: 10px;
+            background: #2563eb;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- SIDEBAR -->
+        <div class="col-3 sidebar">
+
+            <div class="title">GIS Dashboard</div>
+            <div class="subtitle">Healthcare Accessibility Analysis</div>
+
+            <hr style="opacity:0.2">
+
+            <!-- 🔥 BUFFER CONTROL -->
+            <form method="get" class="cardx">
+
+                <h5>Buffer Analysis</h5>
+
+                <label class="form-label">Distância (metros)</label>
+                <input class="form-control" type="number" name="buffer" value="{{ buffer }}">
+
+                <button class="btn btn-primary mt-3">Atualizar Mapa</button>
+
+            </form>
+
+           <!-- KPI POPULAÇÃO COBERTA -->
+<div class="cardx">
+    <h5>População Abrangida</h5>
+    <div class="value" style="color:#22c55e;">
+        {{ pop_coberta }}
+    </div>
+    <small style="opacity:0.7">dentro do buffer</small>
+</div>
+
+<!-- KPI POPULAÇÃO NÃO COBERTA -->
+<div class="cardx">
+    <h5>População NÃO Abrangida</h5>
+    <div class="value" style="color:#ef4444;">
+        {{ pop_nao_coberta }}
+    </div>
+    <small style="opacity:0.7">fora da cobertura dos hospitais</small>
+</div>
+
+            <!-- 🔥 INFO CARD -->
+            <div class="cardx">
+
+                <h5>Status do Sistema</h5>
+
+                <span style="color:#22c55e;">● Online</span><br>
+                <small style="opacity:0.7">GIS Engine ativo</small>
+
+            </div>
+
+            <div class="cardx">
+
+                <h5>Desenvolvido por:</h5>
+
+                <span style="color:#22c55e;">Elton, jonas, Nádia & Stélio</span><br>
+              
+
+            </div>
+        </div>
+
+        <!-- MAPA -->
+        <div class="col-9 map-container">
+
+            <div class="mapbox">
+                {{ mapa|safe }}
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
